@@ -1,0 +1,15 @@
+{
+  "name": "rhythm-beat-maker",
+  "version": "1.0.0",
+  "description": "简易电子节拍编曲器 - 原生 JS + Web Audio API + Rollup",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "devDependencies": {
+    "rollup": "^4.9.0",
+    "@rollup/plugin-terser": "^0.4.4"
+  }
+}

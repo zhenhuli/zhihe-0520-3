@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rhythm Beat Maker - 电子节拍编曲器</title>
+  <link rel="stylesheet" href="src/css/style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>🎵 Rhythm Beat Maker</h1>
+      <p class="subtitle">简易电子节拍编曲器</p>
+    </header>
+
+    <div class="controls">
+      <div class="control-group">
+        <label for="bpm">BPM: <span id="bpmValue">120</span></label>
+        <input type="range" id="bpm" min="60" max="180" value="120" step="1">
+      </div>
+      <div class="control-group">
+        <button id="playBtn" class="btn btn-primary">▶ 播放</button>
+        <button id="stopBtn" class="btn btn-secondary">⏹ 停止</button>
+        <button id="clearBtn" class="btn btn-danger">🗑 清空</button>
+      </div>
+    </div>
+
+    <div class="sequencer" id="sequencer"></div>
+
+    <div class="pattern-manager">
+      <h3>📦 片段管理</h3>
+      <div class="pattern-controls">
+        <button id="savePatternBtn" class="btn btn-primary">💾 保存片段</button>
+        <button id="loadPatternBtn" class="btn btn-secondary">📂 加载片段</button>
+      </div>
+      <div id="patternList" class="pattern-list"></div>
+    </div>
+
+    <footer class="footer">
+      <p>点击网格添加/移除节拍 | 原生 JS + Web Audio API</p>
+    </footer>
+  </div>
+
+  <div id="modalOverlay" class="modal-overlay">
+    <div class="modal">
+      <h3 id="modalTitle">保存片段</h3>
+      <input type="text" id="modalInput" placeholder="输入片段名称">
+      <div class="modal-actions">
+        <button id="modalCancel" class="btn btn-secondary">取消</button>
+        <button id="modalConfirm" class="btn btn-primary">确认</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="src/js/main.js"></script>
+</body>
+</html>
