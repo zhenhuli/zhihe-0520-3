@@ -1,0 +1,19 @@
+{
+  "name": "liquid-mixing-sim",
+  "version": "1.0.0",
+  "description": "多种液体混合反应模拟程序 - 原生JS + Canvas + Web Worker",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "liquid",
+    "mixing",
+    "simulation",
+    "canvas",
+    "web-worker"
+  ],
+  "author": "",
+  "license": "MIT"
+}

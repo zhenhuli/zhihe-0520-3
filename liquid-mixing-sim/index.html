@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>液体混合反应模拟系统</title>
+  <link rel="stylesheet" href="src/css/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <h1>🧪 液体混合反应模拟系统</h1>
+      <p class="subtitle">Liquid Mixing Reaction Simulation</p>
+    </header>
+
+    <div class="main-content">
+      <aside class="control-panel">
+        <div class="panel-section">
+          <h2>溶液选择</h2>
+          <div class="liquid-selector">
+            <label>
+              <span>溶液 A</span>
+              <select id="liquidA">
+                <option value="water">纯净水</option>
+                <option value="hcl">盐酸 (HCl)</option>
+                <option value="naoh">氢氧化钠 (NaOH)</option>
+                <option value="cuso4">硫酸铜 (CuSO₄)</option>
+                <option value="fecl3">氯化铁 (FeCl₃)</option>
+                <option value="phenolphthalein">酚酞指示剂</option>
+                <option value="oil">植物油</option>
+                <option value="alcohol">乙醇</option>
+                <option value="vinegar">醋酸</option>
+                <option value="ammonia">氨水</option>
+              </select>
+            </label>
+            <label>
+              <span>溶液 B</span>
+              <select id="liquidB">
+                <option value="water">纯净水</option>
+                <option value="hcl">盐酸 (HCl)</option>
+                <option value="naoh">氢氧化钠 (NaOH)</option>
+                <option value="cuso4">硫酸铜 (CuSO₄)</option>
+                <option value="fecl3">氯化铁 (FeCl₃)</option>
+                <option value="phenolphthalein">酚酞指示剂</option>
+                <option value="oil">植物油</option>
+                <option value="alcohol">乙醇</option>
+                <option value="vinegar">醋酸</option>
+                <option value="ammonia">氨水</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <h2>混合比例</h2>
+          <div class="ratio-control">
+            <label>
+              <span>溶液 A: <span id="ratioA-value">50</span>%</span>
+              <input type="range" id="ratioA" min="10" max="90" value="50">
+            </label>
+            <div class="ratio-display">
+              <span id="ratioA-display">50</span> : <span id="ratioB-display">50</span>
+            </div>
+            <label>
+              <span>溶液 B: <span id="ratioB-value">50</span>%</span>
+              <input type="range" id="ratioB" min="10" max="90" value="50">
+            </label>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <h2>环境参数</h2>
+          <div class="env-control">
+            <label>
+              <span>温度: <span id="temp-value">25</span>°C</span>
+              <input type="range" id="temperature" min="-20" max="100" value="25">
+            </label>
+            <label>
+              <span>搅拌速度: <span id="stir-value">0</span></span>
+              <input type="range" id="stirSpeed" min="0" max="10" value="0">
+            </label>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <h2>操作控制</h2>
+          <div class="action-buttons">
+            <button id="startBtn" class="btn btn-primary">开始混合</button>
+            <button id="resetBtn" class="btn btn-secondary">重置</button>
+            <button id="pauseBtn" class="btn btn-warning" disabled>暂停</button>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <h2>状态信息</h2>
+          <div id="statusInfo" class="status-info">
+            <p>等待开始...</p>
+          </div>
+        </div>
+      </aside>
+
+      <main class="simulation-area">
+        <div class="canvas-container">
+          <canvas id="simCanvas" width="600" height="500"></canvas>
+          <div class="beaker-overlay">
+            <div class="scale">
+              <span>500ml</span>
+              <span>400ml</span>
+              <span>300ml</span>
+              <span>200ml</span>
+              <span>100ml</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="data-panel">
+          <div class="data-section">
+            <h3>混合前参数</h3>
+            <div class="data-grid" id="beforeMixData">
+              <div class="data-item">
+                <span class="label">溶液A pH值</span>
+                <span class="value" id="before-pH-A">-</span>
+              </div>
+              <div class="data-item">
+                <span class="label">溶液B pH值</span>
+                <span class="value" id="before-pH-B">-</span>
+              </div>
+              <div class="data-item">
+                <span class="label">溶液A 密度</span>
+                <span class="value" id="before-density-A">-</span>
+              </div>
+              <div class="data-item">
+                <span class="label">溶液B 密度</span>
+                <span class="value" id="before-density-B">-</span>
+              </div>
+              <div class="data-item">
+                <span class="label">溶液A 温度</span>
+                <span class="value" id="before-temp-A">-</span>
+              </div>
+              <div class="data-item">
+                <span class="label">溶液B 温度</span>
+                <span class="value" id="before-temp-B">-</span>
+              </div>
+              <div class="data-item">
+                <span class="label">溶液A 颜色</span>
+                <span class="value color-box" id="before-color-A"></span>
+              </div>
+              <div class="data-item">
+                <span class="label">溶液B 颜色</span>
+                <span class="value color-box" id="before-color-B"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="data-section">
+            <h3>混合后参数 (实时)</h3>
+            <div class="data-grid" id="afterMixData">
+              <div class="data-item">
+                <span class="label">混合液 pH值</span>
+                <span class="value" id="after-pH">-</span>
+              </div>
+              <div class="data-item">
+                <span class="label">混合液 密度</span>
+                <span class="value" id="after-density">-</span>
+              </div>
+              <div class="data-item">
+                <span class="label">混合液 温度</span>
+                <span class="value" id="after-temp">-</span>
+              </div>
+              <div class="data-item">
+                <span class="label">混合液 粘度</span>
+                <span class="value" id="after-viscosity">-</span>
+              </div>
+              <div class="data-item">
+                <span class="label">反应状态</span>
+                <span class="value" id="after-reaction">-</span>
+              </div>
+              <div class="data-item">
+                <span class="label">分层情况</span>
+                <span class="value" id="after-layers">-</span>
+              </div>
+              <div class="data-item">
+                <span class="label">沉淀物</span>
+                <span class="value" id="after-precipitate">-</span>
+              </div>
+              <div class="data-item">
+                <span class="label">混合程度</span>
+                <span class="value" id="after-mix-level">-</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="src/js/main.js"></script>
+</body>
+</html>
