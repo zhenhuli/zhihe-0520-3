@@ -1,0 +1,88 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media print {
+  .no-print-actions,
+  .ui.card,
+  .ui.segment.placeholder {
+    display: none !important;
+  }
+  
+  .ui.container {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+  
+  .ui.segment {
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 10px 0 !important;
+  }
+  
+  .ui.tabular.menu,
+  .ui.secondary.pointing.menu {
+    display: none !important;
+  }
+  
+  .ui.tab.segment {
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  h1 {
+    font-size: 24px !important;
+  }
+  
+  h3 {
+    font-size: 18px !important;
+    page-break-after: avoid;
+  }
+  
+  .ui.table {
+    page-break-inside: avoid;
+  }
+  
+  .ui.message.success {
+    display: none !important;
+  }
+}
