@@ -1,9 +1,0 @@
-{
-  "pid": 4053,
-  "startedAt": 1779872425285,
-  "command": "dev",
-  "cwd": "/Users/lizhenhu/Desktop/zhihe-0520-3/card-board-game-editor",
-  "port": 3001,
-  "hostname": "::1",
-  "url": "http://[::1]:3001"
-}
